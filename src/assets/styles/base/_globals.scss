@@ -1,0 +1,39 @@
+@use '../utils';
+
+body {
+  font-family: utils.$font;
+  font-size: 14px;
+  background-color: utils.$Very-Light-Gray;
+}
+
+.container {
+  padding: 1.5rem 8rem;
+
+  @include utils.breakpoint-down(medium) {
+    padding: 2rem;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &-ai-c {
+    align-items: center;
+  }
+
+  &-fd-c {
+    flex-direction: column;
+  }
+
+  &-fd-r {
+    flex-direction: row;
+  }
+
+  &-jc-se {
+    justify-content: space-evenly;
+  }
+
+  &-jc-sb {
+    justify-content: space-between;
+  }
+}
