@@ -14,6 +14,11 @@ body {
   }
 }
 
+.dark {
+  background-color: utils.$Dark-Blue !important;
+  color: utils.$White;
+}
+
 .flex {
   display: flex;
 
