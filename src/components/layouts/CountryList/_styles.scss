@@ -1,0 +1,11 @@
+@use '@styles/utils';
+
+.countries {
+  padding-top: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 2.5rem;
+  row-gap: 3rem;
+}
+.dark {
+  background-color: utils.$Very-Dark-Blue;
+}
