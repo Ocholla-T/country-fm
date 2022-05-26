@@ -28,3 +28,8 @@
     }
   }
 }
+
+.dark {
+  background-color: utils.$Dark-Blue !important;
+  color: utils.$White;
+}
