@@ -14,11 +14,6 @@ body {
   }
 }
 
-.dark {
-  background-color: utils.$Dark-Blue !important;
-  color: utils.$White;
-}
-
 .flex {
   display: flex;
 
@@ -41,4 +36,8 @@ body {
   &-jc-sb {
     justify-content: space-between;
   }
+}
+
+.grid {
+  display: grid;
 }
