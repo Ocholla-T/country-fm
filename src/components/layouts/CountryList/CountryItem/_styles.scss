@@ -1,0 +1,39 @@
+@use '@styles/utils';
+
+.card {
+  border-radius: 7px;
+  background: utils.$White;
+  box-shadow: 7px 7px 13px #d7d7d7, -7px -7px 13px #e9e9e9;
+  overflow: hidden;
+  cursor: pointer;
+
+  &__image {
+    width: 100%;
+    object-fit: cover;
+    height: 10rem;
+  }
+
+  &__information {
+    padding: 1.25rem 1rem 2rem;
+    font-weight: 600;
+
+    > h3 {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-weight: 600;
+      > span {
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+.dark {
+  background: utils.$Dark-Blue;
+  color: utils.$White;
+  border-radius: 10px;
+
+  box-shadow: 7px 7px 13px #182129, -7px -7px 13px #283745;
+}
