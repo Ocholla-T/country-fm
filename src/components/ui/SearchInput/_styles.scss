@@ -1,0 +1,45 @@
+@use '@styles/utils';
+
+.search-input {
+  padding-left: 2rem;
+  background: utils.$White;
+  border-radius: 7px;
+  box-shadow: 7px 7px 13px #d7d7d7, -7px -7px 13px #e9e9e9;
+  min-width: 40%;
+  overflow: hidden;
+
+  &__icon {
+    width: 22px;
+    margin-right: 0.75rem;
+    filter: invert(59%) sepia(0%) saturate(265%) hue-rotate(157deg) brightness(89%) contrast(90%);
+  }
+
+  > input {
+    padding: 1rem 2rem 1rem 0.75rem;
+    border: none;
+
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: utils.$Dark-Gray;
+    }
+  }
+}
+
+.dark {
+  color: utils.$White;
+  background: utils.$Dark-Blue;
+  box-shadow: 7px 7px 13px #182129, -7px -7px 13px #283745;
+  border-radius: 10px;
+
+  > input {
+    background-color: utils.$Dark-Blue;
+    color: utils.$White;
+  }
+}
