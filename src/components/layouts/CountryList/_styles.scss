@@ -12,6 +12,13 @@
   }
 }
 
+.form-inputs {
+  @include utils.breakpoint-down(medium) {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+}
+
 .dark {
   background-color: utils.$Very-Dark-Blue;
 }
