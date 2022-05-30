@@ -1,0 +1,69 @@
+@use '@styles/utils';
+
+.dropdown {
+  max-width: 30%;
+  background: utils.$White;
+  border-radius: 7px;
+  box-shadow: 7px 7px 13px #d7d7d7, -7px -7px 13px #e9e9e9;
+  position: relative;
+  padding: 1rem 2rem;
+
+  @include utils.breakpoint-down(medium) {
+    max-width: 60%;
+  }
+
+  &-title {
+    cursor: pointer;
+
+    &__icon {
+      margin-left: 3rem;
+      width: 20px;
+
+      @include utils.breakpoint-down(medium) {
+        margin-left: 1rem;
+      }
+    }
+
+    & > h4 {
+      font-weight: 600;
+    }
+  }
+
+  &-content {
+    background: utils.$White;
+    border-radius: 7px;
+    box-shadow: 7px 7px 13px #d7d7d7, -7px -7px 13px #e9e9e9;
+    left: 0;
+    padding: 1rem 2rem;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    row-gap: 0.5rem;
+    width: 100%;
+    z-index: 2;
+    font-weight: 600;
+
+    > p {
+      cursor: pointer;
+    }
+  }
+}
+
+.dark {
+  color: utils.$White;
+  background: utils.$Dark-Blue;
+  box-shadow: 7px 7px 13px #182129, -7px -7px 13px #283745;
+  border-radius: 10px;
+
+  > .dropdown-title {
+    > img {
+      filter: invert(100%) sepia(89%) saturate(0%) hue-rotate(75deg) brightness(113%) contrast(101%);
+    }
+  }
+
+  > aside {
+    color: utils.$White;
+    background: utils.$Dark-Blue;
+    box-shadow: 7px 7px 13px #182129, -7px -7px 13px #283745;
+    border-radius: 10px;
+  }
+}
