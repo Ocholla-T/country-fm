@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 // @ts-ignore
 import { useTheme } from '@store/useTheme'
 import { gsap } from 'gsap'
-import { onBeforeUpdate, Ref, ref } from 'vue'
+import { Ref, ref } from 'vue'
 
 type Countries = {
   capital: string[]
@@ -56,7 +56,7 @@ const descaleCard = (index: number): void => {
     />
 
     <div class="card__information">
-      <h3>{{ country.name.official }}</h3>
+      <h3>{{ country.name.common }}</h3>
       <p>
         Population: <span> {{ country.population }}</span>
       </p>
