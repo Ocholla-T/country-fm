@@ -17,7 +17,14 @@ export const useCountries = defineStore('countries', {
   state: () => ({
     countries: [] as countries[],
   }),
-
+  getters: {
+    filteredCountries: (state) => {
+      return (country: string) =>
+        state.countries.filter((element) =>
+          element.name.common.toUpperCase().match(country.toUpperCase()),
+        )
+    },
+  },
   actions: {
     async fetchCountries() {
       const response = (await axios.get('https://restcountries.com/v3.1/all')).data
