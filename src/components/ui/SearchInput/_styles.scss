@@ -8,6 +8,10 @@
   min-width: 40%;
   overflow: hidden;
 
+  @include utils.breakpoint-down(medium) {
+    min-width: 100%;
+  }
+
   &__icon {
     width: 22px;
     margin-right: 0.75rem;

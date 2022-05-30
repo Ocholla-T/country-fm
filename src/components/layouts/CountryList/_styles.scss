@@ -5,6 +5,11 @@
   grid-template-columns: repeat(4, 1fr);
   column-gap: 2.5rem;
   row-gap: 3rem;
+
+  @include utils.breakpoint-down(medium) {
+    grid-template-columns: 1fr;
+    padding: 2rem 3.5rem;
+  }
 }
 
 .dark {
