@@ -5,13 +5,15 @@ import { useCountries } from '@store/useCountries'
 // @ts-ignore
 import { useTheme } from '@store/useTheme'
 import { storeToRefs } from 'pinia'
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 /*Components */
 import CountryItem from './CountryItem/CountryItem.vue'
+import SearchInput from '@components/ui/SearchInput/SearchInput.vue'
 
-const { countries } = storeToRefs(useCountries())
+const { filteredCountries } = storeToRefs(useCountries())
 const { isDark } = storeToRefs(useTheme())
 const { fetchCountries } = useCountries()
+const text = ref('')
 
 onBeforeMount(() => {
   fetchCountries()
@@ -19,8 +21,13 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <main :class="{ dark: isDark }" class="countries container grid">
-    <CountryItem :countries="countries" />
+  <main :class="{ dark: isDark }">
+    <div class="container flex">
+      <SearchInput v-model="text" />
+    </div>
+    <div class="countries container grid">
+      <CountryItem :countries="filteredCountries(text)" />
+    </div>
   </main>
 </template>
 
