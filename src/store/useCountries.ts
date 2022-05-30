@@ -20,9 +20,18 @@ export const useCountries = defineStore('countries', {
   getters: {
     filteredCountries: (state) => {
       return (country: string) =>
-        state.countries.filter((element) =>
-          element.name.common.toUpperCase().match(country.toUpperCase()),
-        )
+        state.countries.filter((element) => {
+          if (
+            country === 'Africa' ||
+            country === 'Europe' ||
+            country === 'Asia' ||
+            country === 'Oceania' ||
+            country === 'Americas'
+          ) {
+            return element.region.toUpperCase().match(country.toUpperCase())
+          }
+          return element.name.common.toUpperCase().match(country.toUpperCase())
+        })
     },
   },
   actions: {
