@@ -46,4 +46,8 @@
     background-color: utils.$Dark-Blue;
     color: utils.$White;
   }
+
+  & > img {
+    filter: invert(100%) sepia(89%) saturate(0%) hue-rotate(75deg) brightness(113%) contrast(101%);
+  }
 }
