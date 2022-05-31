@@ -2,7 +2,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-type countries = {
+type country = {
   capital: string[]
   flagSource: string
   name: {
@@ -15,12 +15,12 @@ type countries = {
 
 export const useCountries = defineStore('countries', {
   state: () => ({
-    countries: [] as countries[],
+    countries: [] as country[],
   }),
   getters: {
     filteredCountries: (state) => {
       return (country: string) =>
-        state.countries.filter((element) => {
+        state.countries.filter((element: country): RegExpMatchArray | null => {
           if (
             country === 'Africa' ||
             country === 'Europe' ||
@@ -35,12 +35,13 @@ export const useCountries = defineStore('countries', {
     },
   },
   actions: {
-    async fetchCountries() {
-      const response = (await axios.get('https://restcountries.com/v3.1/all')).data
+    async fetchCountries(): Promise<void> {
+      const response: object[] = (await axios.get('https://restcountries.com/v3.1/all')).data
 
-      this.countries = response.map((country: any) => {
-        return { ...country, flagSource: country.flags.svg }
-      })
+      this.countries = response.map((country: any) => ({
+        ...country,
+        flagSource: country.flags.svg,
+      }))
     },
   },
 })
