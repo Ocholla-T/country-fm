@@ -13,7 +13,7 @@ const routes: RouteRecordRaw[] = [
     component: Home,
   },
   {
-    path: '/detail',
+    path: '/detail/:country',
     name: 'Detail',
     component: lazyLoadRoute('Detail'),
   },
