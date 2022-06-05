@@ -5,7 +5,7 @@ import { useCountries } from '@store/useCountries'
 // @ts-ignore
 import { useTheme } from '@store/useTheme'
 import { storeToRefs } from 'pinia'
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, Ref, ref } from 'vue'
 /*Components */
 import CountryItem from './CountryItem/CountryItem.vue'
 import SearchInput from '@components/ui/SearchInput/SearchInput.vue'
@@ -13,15 +13,11 @@ import FilterDropdown from '@components/ui/FilterDropdown/FilterDropdown.vue'
 
 const { filteredCountries } = storeToRefs(useCountries())
 const { isDark } = storeToRefs(useTheme())
-const { fetchCountries } = useCountries()
-const country = ref<string>('')
-const region = ref<string>('')
 
-onBeforeMount(() => {
-  fetchCountries()
-})
+const country: Ref<string> = ref<string>('')
+const region: Ref<string> = ref<string>('')
 
-function fetchRegion(element: HTMLParagraphElement) {
+function fetchRegion(element: HTMLParagraphElement): void {
   region.value = element.textContent as string
 }
 </script>
