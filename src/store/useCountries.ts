@@ -2,25 +2,46 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-type country = {
+type Country = {
   capital: string[]
+  currencies: {
+    [key: string]: {
+      name: string
+      symbol: string
+    }
+  }
+
   flagSource: string
+  languages: object
   name: {
     common: string
     official: string
   }
+  nativeName: {
+    [key: string]: {
+      official: string
+      common: string
+    }
+  }
   population: string
   region: string
+  subregion: string
+  tld: string[]
+  cca3: string
+  borders: string[]
 }
 
 export const useCountries = defineStore('countries', {
   state: () => ({
-    countries: [] as country[],
+    countries: [] as Country[],
   }),
+  persist: {
+    paths: ['countries'],
+  },
   getters: {
-    filteredCountries: (state) => {
-      return (country: string) =>
-        state.countries.filter((element: country): RegExpMatchArray | null => {
+    filteredCountries: (state: { countries: Country[] }) => {
+      return (country: string): Country[] =>
+        state.countries.filter((element: Country): RegExpMatchArray | null => {
           if (
             country === 'Africa' ||
             country === 'Europe' ||
@@ -32,6 +53,26 @@ export const useCountries = defineStore('countries', {
           }
           return element.name.common.toUpperCase().match(country.toUpperCase())
         })
+    },
+    getCountry: (state: { countries: Country[] }): Function => {
+      return (commonName: string): Country | undefined =>
+        state.countries.find((element: Country) => element.name.common === commonName)
+    },
+    getCountryNameFromCode: (state: { countries: Country[] }): Function => {
+      return (name: string): Country[] | undefined => {
+        let country: Country | undefined = state.countries.find(
+          (element: Country) => element.name.common === name,
+        )
+        if (country?.borders !== undefined) {
+          let borderCountries: Country[] = country.borders.map((code: string) =>
+            state.countries.find((element) => element.cca3 === code),
+          ) as Country[]
+
+          return borderCountries
+        }
+
+        return
+      }
     },
   },
   actions: {
