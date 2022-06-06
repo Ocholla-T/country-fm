@@ -1,11 +1,9 @@
 <script setup lang="ts">
 /*Dependencies */
-// @ts-ignore
 import { useCountries } from '@store/useCountries'
-// @ts-ignore
 import { useTheme } from '@store/useTheme'
 import { storeToRefs } from 'pinia'
-import { onBeforeMount, Ref, ref } from 'vue'
+import { Ref, ref } from 'vue'
 /*Components */
 import CountryItem from './CountryItem/CountryItem.vue'
 import SearchInput from '@components/ui/SearchInput/SearchInput.vue'

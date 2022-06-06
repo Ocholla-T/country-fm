@@ -1,15 +1,15 @@
 import { defineStore } from 'pinia'
 
-export type RootState = {
+type RootState = {
   isDark: boolean
 }
 
 export const useTheme = defineStore('theme', {
-  state: () => ({
-    isDark: false as boolean,
+  state: (): RootState => ({
+    isDark: false,
   }),
   actions: {
-    changeTheme() {
+    changeTheme(): void {
       this.isDark = !this.isDark
     },
   },

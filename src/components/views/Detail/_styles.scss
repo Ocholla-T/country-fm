@@ -66,3 +66,17 @@
     }
   }
 }
+
+.dark {
+  color: utils.$White;
+  background-color: utils.$Very-Dark-Blue;
+
+  &-element {
+    color: utils.$White;
+    box-shadow: 7px 7px 13px #182129, -7px -7px 13px #283745;
+    background-color: utils.$Dark-Blue;
+    > img {
+      filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+    }
+  }
+}

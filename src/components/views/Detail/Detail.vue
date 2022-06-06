@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import NavigationBar from '@components/layouts/NavigationBar/NavigationBar.vue'
 import { computed, ComputedRef } from 'vue'
-// @ts-ignore
 import { useCountries } from '@store/useCountries'
+import { useTheme } from '@store/useTheme'
 import { RouteLocationNormalizedLoaded, useRoute } from 'vue-router'
 import BorderCountryCard from './BorderCountryCard/BorderCountryCard.vue'
 import { Country } from '../../../models/Country'
+import { storeToRefs } from 'pinia'
 
 const route: RouteLocationNormalizedLoaded = useRoute()
 const { getCountry, getCountryNameFromCode } = useCountries()
+const { isDark } = storeToRefs(useTheme())
 const country: ComputedRef<Country> = computed((): Country => getCountry(route.params.country))
 const borderCountry: ComputedRef<Country[] | undefined> = computed((): Country[] | undefined => {
   return getCountryNameFromCode(route.params.country)
@@ -18,8 +20,13 @@ const borderCountry: ComputedRef<Country[] | undefined> = computed((): Country[]
 <template>
   <section>
     <NavigationBar />
-    <section class="detail container">
-      <router-link to="/" tag="div" class="detail__back-button flex flex-ai-c">
+    <section class="detail container" :class="{ dark: isDark }">
+      <router-link
+        to="/"
+        tag="div"
+        :class="{ 'dark-element': isDark }"
+        class="detail__back-button flex flex-ai-c"
+      >
         <img
           class="detail__back-button__icon"
           src="../../../assets/images/arrow-back.svg"
