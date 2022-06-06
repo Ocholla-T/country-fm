@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useCountries } from '@store/useCountries'
+import { onBeforeMount } from 'vue'
+
+const { fetchCountries } = useCountries()
+
+onBeforeMount(() => {
+  fetchCountries()
+})
+</script>
 
 <template>
   <router-view />
