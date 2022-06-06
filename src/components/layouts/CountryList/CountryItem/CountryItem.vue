@@ -4,21 +4,10 @@ import { storeToRefs } from 'pinia'
 import { useTheme } from '@store/useTheme'
 // @ts-ignore
 import { useCountries } from '@store/useCountries'
-
 import { gsap } from 'gsap'
 import { Ref, ref } from 'vue'
 import { Router, useRouter } from 'vue-router'
-
-type Country = {
-  capital: string[]
-  flagSource: string
-  name: {
-    common: string
-    official: string
-  }
-  population: string
-  region: string
-}
+import { Country } from '../../../../models/Country'
 
 defineProps<{
   countries: Country[]
