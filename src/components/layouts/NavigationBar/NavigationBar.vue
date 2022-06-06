@@ -1,6 +1,5 @@
 <script setup lang="ts">
 /*Dependencies */
-import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
 // @ts-ignore
@@ -14,7 +13,7 @@ const { changeTheme } = useTheme()
 <template>
   <nav class="nav container flex flex-jc-sb flex-ai-c" :class="{ dark: isDark }">
     <div class="nav__logo">
-      <h1>Where in the world?</h1>
+      <router-link to="/" role="heading"> Where in the world? </router-link>
     </div>
 
     <div class="nav__dark-toggle flex flex-ai-c" @click="changeTheme()">

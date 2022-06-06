@@ -8,10 +8,11 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "@components/*": ["components/"],
-      "@views/*": ["components/views"],
-      "@styles/*": ["assets/styles"],
-      "@store/*": ["store"]
+      "@components/*": ["components/*"],
+      "@views/*": ["components/views/*"],
+      "@styles/*": ["assets/styles/*"],
+      "@store/*": ["store/*"],
+      "@models/*": ["models/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

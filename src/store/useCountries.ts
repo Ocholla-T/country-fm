@@ -1,26 +1,19 @@
 /*Dependencies */
 import { defineStore } from 'pinia'
+import { Country } from '../models/Country'
 import axios from 'axios'
-
-type countries = {
-  capital: string[]
-  flagSource: string
-  name: {
-    common: string
-    official: string
-  }
-  population: string
-  region: string
-}
 
 export const useCountries = defineStore('countries', {
   state: () => ({
-    countries: [] as countries[],
+    countries: [] as Country[],
   }),
+  persist: {
+    paths: ['countries'],
+  },
   getters: {
-    filteredCountries: (state) => {
-      return (country: string) =>
-        state.countries.filter((element) => {
+    filteredCountries: (state: { countries: Country[] }) => {
+      return (country: string): Country[] =>
+        state.countries.filter((element: Country): RegExpMatchArray | null => {
           if (
             country === 'Africa' ||
             country === 'Europe' ||
@@ -33,14 +26,35 @@ export const useCountries = defineStore('countries', {
           return element.name.common.toUpperCase().match(country.toUpperCase())
         })
     },
+    getCountry: (state: { countries: Country[] }): Function => {
+      return (commonName: string): Country | undefined =>
+        state.countries.find((element: Country) => element.name.common === commonName)
+    },
+    getCountryNameFromCode: (state: { countries: Country[] }): Function => {
+      return (name: string): Country[] | undefined => {
+        let country: Country | undefined = state.countries.find(
+          (element: Country) => element.name.common === name,
+        )
+        if (country?.borders !== undefined) {
+          let borderCountries: Country[] = country.borders.map((code: string) =>
+            state.countries.find((element) => element.cca3 === code),
+          ) as Country[]
+
+          return borderCountries
+        }
+
+        return
+      }
+    },
   },
   actions: {
-    async fetchCountries() {
-      const response = (await axios.get('https://restcountries.com/v3.1/all')).data
+    async fetchCountries(): Promise<void> {
+      const response: object[] = (await axios.get('https://restcountries.com/v3.1/all')).data
 
-      this.countries = response.map((country: any) => {
-        return { ...country, flagSource: country.flags.svg }
-      })
+      this.countries = response.map((country: any) => ({
+        ...country,
+        flagSource: country.flags.svg,
+      }))
     },
   },
 })

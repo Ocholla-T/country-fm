@@ -8,6 +8,12 @@
 
   &__logo {
     cursor: pointer;
+    > a {
+      text-decoration: none;
+      color: utils.$Very-Dark-Blue-Text;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
   }
   &__dark-toggle {
     cursor: pointer;
@@ -32,4 +38,10 @@
 .dark {
   background-color: utils.$Dark-Blue !important;
   color: utils.$White;
+
+  > .nav__logo {
+    > a {
+      color: utils.$White;
+    }
+  }
 }

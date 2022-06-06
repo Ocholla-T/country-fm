@@ -2,26 +2,21 @@
 import { storeToRefs } from 'pinia'
 // @ts-ignore
 import { useTheme } from '@store/useTheme'
+// @ts-ignore
+import { useCountries } from '@store/useCountries'
 import { gsap } from 'gsap'
 import { Ref, ref } from 'vue'
-
-type Countries = {
-  capital: string[]
-  flagSource: string
-  name: {
-    common: string
-    official: string
-  }
-  population: string
-  region: string
-}
+import { Router, useRouter } from 'vue-router'
+import { Country } from '../../../../models/Country'
 
 defineProps<{
-  countries: Countries[]
+  countries: Country[]
 }>()
 
-const card = <Ref<HTMLDivElement[]>>ref([])
+const card: Ref<HTMLDivElement[]> = <Ref<HTMLDivElement[]>>ref([])
 const { isDark } = storeToRefs(useTheme())
+const { getCountry } = useCountries()
+const router: Router = useRouter()
 
 const scaleCard = (index: number): void => {
   gsap.to(card.value[index], {
@@ -38,6 +33,16 @@ const descaleCard = (index: number): void => {
     ease: 'linear.easeInOut',
   })
 }
+
+function goToDetailPage(name: string) {
+  let country: string = getCountry(name).name.common
+  return router.push({
+    name: 'Detail',
+    params: {
+      country,
+    },
+  })
+}
 </script>
 <template>
   <section
@@ -48,6 +53,7 @@ const descaleCard = (index: number): void => {
     class="card grid"
     @mouseenter="scaleCard(index)"
     @mouseleave="descaleCard(index)"
+    @click="goToDetailPage(country.name.common)"
   >
     <img
       class="card__image"

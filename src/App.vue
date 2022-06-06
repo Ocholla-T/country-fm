@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import Home from '@components/views/Home/Home.vue'
+import { useCountries } from '@store/useCountries'
+import { onBeforeMount } from 'vue'
+
+const { fetchCountries } = useCountries()
+
+onBeforeMount(() => {
+  fetchCountries()
+})
 </script>
 
 <template>
-  <Home />
+  <router-view />
 </template>
 
 <style lang="scss">

@@ -1,0 +1,15 @@
+@use '@styles/utils';
+
+.border-card {
+  padding: 0.325rem 1.5rem;
+  background: utils.$White;
+  margin-right: 0.5rem;
+  border-radius: 7px;
+  box-shadow: 5px 5px 9px#d7d7d7, -5px -5px 9px #e9e9e9;
+}
+
+.dark {
+  color: utils.$White;
+  background-color: utils.$Dark-Blue;
+  box-shadow: 5px 5px 9px #182129, -5px -5px 9px #283745;
+}
