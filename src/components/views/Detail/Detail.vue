@@ -53,13 +53,13 @@ const borderCountry: ComputedRef<Country[] | undefined> = computed((): Country[]
                 <strong class="detail__country__desc--subtitle">Region:</strong>
                 {{ country.region }}
               </p>
-              <p>
+              <p v-if="country.subregion">
                 <strong class="detail__country__desc--subtitle">Sub Region:</strong>
                 {{ country.subregion }}
               </p>
-              <p>
+              <p v-if="country.capital">
                 <strong class="detail__country__desc--subtitle">Capital:</strong>
-                {{ country.capital.join() }}
+                {{ country.capital && country.capital.join() }}
               </p>
             </div>
             <div>
@@ -67,17 +67,17 @@ const borderCountry: ComputedRef<Country[] | undefined> = computed((): Country[]
                 <strong class="detail__country__desc--subtitle">Top Level Domain:</strong>
                 {{ country.tld.join() }}
               </p>
-              <p>
+              <p v-if="country.currencies">
                 <strong class="detail__country__desc--subtitle">Currencies:</strong>
-                {{ Object.values(country.currencies)[0].name }}
+                {{ country.currencies && Object.values(country.currencies)[0].name }}
               </p>
               <p>
                 <strong class="detail__country__desc--subtitle">Languages:</strong>
-                {{ Object.values(country.languages).join(', ') }}
+                {{ Object.values(country?.languages).join(', ') }}
               </p>
             </div>
           </div>
-          <div class="detail__country__desc--border grid">
+          <div v-if="borderCountry" class="detail__country__desc--border grid">
             <p class="detail__country__desc--subtitle">Border Countries:</p>
             <div class="flex">
               <BorderCountryCard :borderCountry="borderCountry" />
